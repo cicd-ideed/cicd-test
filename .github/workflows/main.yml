@@ -41,11 +41,13 @@ jobs:
       - name: Run SAM build
         run: sam build
 
-      - name: Publish to GitHub Packages
+      # Deploy JAR to GitHub Packages
+      - name: Deploy JAR to GitHub Packages
         run: |
+          cd HelloWorldFunction
           PACKAGE_NAME=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)
           VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-          mvn deploy:deploy-file -Dfile=HelloWorldFunction/target/${PACKAGE_NAME}-${VERSION}.jar -DartifactId=${PACKAGE_NAME} -Dversion=${VERSION} 
-
+          mvn deploy:deploy-file -DpomFile=pom.xml -Dfile=target/${PACKAGE_NAME}-${VERSION}.jar -DrepositoryId=github -Durl=https://maven.pkg.github.com/jason-ideed/cicd-test -DgroupId=helloworld -DartifactId=${PACKAGE_NAME} -Dversion=${VERSION} -Dpackaging=jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
