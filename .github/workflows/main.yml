@@ -28,6 +28,14 @@ jobs:
           java-version: '17'
           distribution: 'temurin' # Use 'adopt' or other distributions if you prefer
 
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: .
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       - name: Build with Maven
         run: mvn clean install
 
