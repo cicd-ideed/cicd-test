@@ -5,3 +5,4 @@
 /.aws-sam/
 /examplefunction/dependency-reduced-pom.xml
 /examplefunction/target/
+/target/
