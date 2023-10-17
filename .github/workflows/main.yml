@@ -1,0 +1,41 @@
+name: Build and Deploy to GitHub Packages
+
+on:
+  push:
+    branches:
+      - main # or the name of your default branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17' # Version of Java to use
+          distribution: 'temurin' # To use Temurin distribution for Java
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+      - name: Install AWS SAM CLI
+        run: |
+          curl -L https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip -o aws-sam-cli.zip
+          unzip aws-sam-cli.zip -d sam-installation
+          sudo ./sam-installation/install
+          sam --version
+
+      - name: Run SAM build
+        run: sam build
+
+      - name: Publish to GitHub Packages
+        run: |
+          PACKAGE_NAME=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)
+          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          mvn deploy:deploy-file -Dfile=target/${PACKAGE_NAME}-${VERSION}.jar -DrepositoryId=github -Durl=https://maven.pkg.github.com/jason-ideed/cicd-test -DgroupId=helloworld -DartifactId=${PACKAGE_NAME} -Dversion=${VERSION} -Dpackaging=jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
