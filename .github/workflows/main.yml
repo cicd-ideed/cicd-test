@@ -45,6 +45,7 @@ jobs:
         run: |
           PACKAGE_NAME=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)
           VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-          mvn -B deploy --file pom.xml
+          mvn deploy:deploy-file -Dfile=HelloWorldFunction/target/${PACKAGE_NAME}-${VERSION}.jar -DartifactId=${PACKAGE_NAME} -Dversion=${VERSION} 
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
