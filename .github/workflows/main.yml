@@ -35,7 +35,7 @@ jobs:
           sam --version
 
       - name: Run SAM build
-        run: sam build --use-container
+        run: sam build --debug
 
       - name: Publish to GitHub Packages
         run: |
