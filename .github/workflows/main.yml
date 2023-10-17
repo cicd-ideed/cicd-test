@@ -35,13 +35,12 @@ jobs:
           sam --version
 
       - name: Run SAM build
-        run: sam build --debug
+        run: sam build
 
       - name: Publish to GitHub Packages
         run: |
           PACKAGE_NAME=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)
           VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-#          mvn deploy:deploy-file -Dfile=target/${PACKAGE_NAME}-${VERSION}.jar -DrepositoryId=github -Durl=https://maven.pkg.github.com/jason-ideed/cicd-test -DgroupId=helloworld -DartifactId=${PACKAGE_NAME} -Dversion=${VERSION} -Dpackaging=jar
-          mvn -B deploy --file pom.xml # This will deploy your package
+          mvn -B deploy --file pom.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
