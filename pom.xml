@@ -7,7 +7,12 @@
     <artifactId>parent-artifact</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <sonar.organization>jason-ideed</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    </properties>
     <modules>
         <module>examplefunction</module> <!-- The directory name of the module -->
     </modules>
