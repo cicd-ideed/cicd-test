@@ -15,7 +15,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/jason-ideed/test-cicd</url>
+            <url>https://maven.pkg.github.com/jason-ideed/cicd-test</url>
         </repository>
     </distributionManagement>
 
