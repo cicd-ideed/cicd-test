@@ -2,3 +2,6 @@
 /*.iml
 /*/.aws-sam/
 /settings-security.xml
+/.aws-sam/
+/examplefunction/dependency-reduced-pom.xml
+/examplefunction/target/

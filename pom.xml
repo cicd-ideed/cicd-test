@@ -9,12 +9,12 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>HelloWorldFunction</module> <!-- The directory name of the module -->
+        <module>examplefunction</module> <!-- The directory name of the module -->
     </modules>
     <distributionManagement>
         <repository>
             <id>github</id>
-            <name>GitHub Packages</name>
+            <name>iDeed packages</name>
             <url>https://maven.pkg.github.com/jason-ideed/cicd-test</url>
         </repository>
     </distributionManagement>

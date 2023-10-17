@@ -44,7 +44,7 @@ jobs:
       # Deploy JAR to GitHub Packages
       - name: Deploy JAR to GitHub Packages
         run: |
-          cd HelloWorldFunction
+          cd examplefunction
           PACKAGE_NAME=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)
           VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           mvn deploy -X
