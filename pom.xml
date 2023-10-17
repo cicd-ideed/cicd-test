@@ -11,5 +11,12 @@
     <modules>
         <module>HelloWorldFunction</module> <!-- The directory name of the module -->
     </modules>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/jason-ideed/test-cicd</url>
+        </repository>
+    </distributionManagement>
 
 </project>
