@@ -29,7 +29,7 @@ jobs:
           distribution: 'temurin' # Use 'adopt' or other distributions if you prefer
 
       - name: Build with Maven
-        run: mvn -B clean verify sonar:sonar -Dsonar.token=${{ secrets.SONAR_TOKEN }} install
+        run: mvn -B clean verify sonar:sonar -Dsonar.token=${{ secrets.SONAR_TOKEN }} -Dsonar.host.url=https://sonarcloud.io install
 
       - name: Install AWS SAM CLI
         run: |
